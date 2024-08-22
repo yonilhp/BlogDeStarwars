@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
-import { Row, Container, Modal, Button } from "react-bootstrap";
+import { Row, Container, Modal } from "react-bootstrap";
 import CharacterCard from "./CharacterCard.jsx";
+import CharacterCardImage from "./CharacterCardImage.jsx";
 import CharacterDetails from "./CharacterDetails.jsx";
 
 const CharacterList = () => {
@@ -18,6 +19,9 @@ const CharacterList = () => {
   };
 
   const handleClose = () => setShowModal(false);
+
+  // Asegúrate de que store.selectedCharacter esté definido antes de acceder a él
+  const selectedCharacter = store.selectedCharacter || {};
 
   return (
     <Container>
@@ -38,7 +42,15 @@ const CharacterList = () => {
           <Modal.Title>Character Details</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <CharacterDetails />
+          {selectedCharacter && (
+            <>
+              <CharacterCardImage
+                alt={selectedCharacter.name}
+                style={{ height: "240px", objectFit: "cover" }} // Ajusta el estilo según sea necesario
+              />
+              <CharacterDetails />
+            </>
+          )}
         </Modal.Body>
       </Modal>
     </Container>

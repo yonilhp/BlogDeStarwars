@@ -1,4 +1,3 @@
-// src/components/CharacterCardImage.jsx
 import React from "react";
 import PropTypes from "prop-types";
 import starWarsImag from "../../img/sc1.png"; // Importa la imagen
