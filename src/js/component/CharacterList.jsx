@@ -24,6 +24,7 @@ const CharacterList = () => {
 
   return (
     <Container>
+      <h1 className="text-danger">Characters</h1>
       <Row
         className={`overflow-auto flex-nowrap ${showModal ? "opacity-50" : ""}`}
       >
