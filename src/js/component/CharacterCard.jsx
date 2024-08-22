@@ -1,6 +1,7 @@
+// src/components/CharacterCard.jsx
 import React from "react";
 import { Card, Button } from "react-bootstrap";
-import starWarsImag from "../../img/sc1.png";
+import CharacterCardImage from "./CharacterCardImage.jsx";
 
 const CharacterCard = ({ character, onViewMore }) => {
   return (
@@ -8,13 +9,10 @@ const CharacterCard = ({ character, onViewMore }) => {
       className="mx-2"
       style={{ width: "250px", height: "350px", position: "relative" }}
     >
-      <div className="ratio ratio-4x3">
-        <Card.Img
-          src={starWarsImag}
-          className="card-img-top"
-          style={{ height: "240px", objectFit: "cover" }}
-        />
-      </div>
+      <CharacterCardImage
+        alt={character.name || "Character Image"} // Texto alternativo para la imagen
+        style={{ height: "240px", objectFit: "cover" }} // Estilo de la imagen
+      />
       <Card.Body
         className="d-flex flex-column"
         style={{ position: "absolute", bottom: 0, left: 0, right: 0 }}
