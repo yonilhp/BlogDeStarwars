@@ -20,7 +20,6 @@ const CharacterList = () => {
 
   const handleClose = () => setShowModal(false);
 
-  // Asegúrate de que store.selectedCharacter esté definido antes de acceder a él
   const selectedCharacter = store.selectedCharacter || {};
 
   return (
@@ -43,13 +42,13 @@ const CharacterList = () => {
         </Modal.Header>
         <Modal.Body>
           {selectedCharacter && (
-            <>
+            <div className="d-flex flex-column">
               <CharacterCardImage
                 alt={selectedCharacter.name}
-                style={{ height: "240px", objectFit: "cover" }} // Ajusta el estilo según sea necesario
+                style={{ height: "380px" }}
               />
               <CharacterDetails />
-            </>
+            </div>
           )}
         </Modal.Body>
       </Modal>

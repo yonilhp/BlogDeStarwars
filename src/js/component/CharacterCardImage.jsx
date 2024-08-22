@@ -4,12 +4,15 @@ import starWarsImag from "../../img/sc1.png"; // Importa la imagen
 
 const CharacterCardImage = ({ alt, style }) => {
   return (
-    <div className="ratio ratio-4x3">
+    <div
+      className="w-100 d-flex justify-content-center overflow-hidden"
+      style={{ height: style.height || "380px", ...style }}
+    >
       <img
         src={starWarsImag}
         alt={alt}
-        className="card-img-top"
-        style={style}
+        className="img-fluid w-100 h-100"
+        style={{ objectFit: "cover" }}
       />
     </div>
   );
@@ -21,7 +24,7 @@ CharacterCardImage.propTypes = {
 };
 
 CharacterCardImage.defaultProps = {
-  style: { height: "240px", objectFit: "cover" },
+  style: { height: "380px", objectFit: "cover" },
 };
 
 export default CharacterCardImage;
