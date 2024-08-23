@@ -1,16 +1,19 @@
-// src/components/CharacterCard.jsx
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Card, Button } from "react-bootstrap";
 import CharacterCardImage from "./CharacterCardImage.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { Context } from "../store/appContext"; // Importamos el contexto
 
-const CharacterCard = ({ character, onViewMore, onToggleFavorite, url }) => {
-  const [isFavorite, setIsFavorite] = useState(false);
+const CharacterCard = ({ character, onViewMore, url }) => {
+  const { store, actions } = useContext(Context); // Usamos el contexto para obtener acciones y store
+  const [isFavorite, setIsFavorite] = useState(
+    store.favorites.some((fav) => fav.uid === character.uid)
+  );
 
   const handleToggleFavorite = () => {
     setIsFavorite(!isFavorite);
-    onToggleFavorite(character);
+    actions.toggleFavorite(character);
   };
 
   return (
@@ -33,11 +36,10 @@ const CharacterCard = ({ character, onViewMore, onToggleFavorite, url }) => {
         <div className="d-flex justify-content-between align-items-center mt-auto">
           <Button
             variant="primary"
-            onClick={() => onViewMore(character.uid, url)} // Pasa también la URL de la imagen
+            onClick={() => onViewMore(character.uid, url)} // Pasamos la URL de la imagen
           >
             Ver más
           </Button>
-
           <FontAwesomeIcon
             icon={faHeart}
             onClick={handleToggleFavorite}

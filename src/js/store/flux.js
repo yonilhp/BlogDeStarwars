@@ -3,7 +3,8 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       characters: [],
       selectedCharacter: null,
-      characterImageUrl: "", // Añadir la propiedad characterImageUrl al estado
+      characterImageUrl: "",
+      favorites: [], // Nueva propiedad para los favoritos
     },
     actions: {
       loadCharacters: () => {
@@ -32,7 +33,26 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       setCharacterImageUrl: (url) => {
-        setStore({ characterImageUrl: url }); // Nueva acción para actualizar la URL de la imagen
+        setStore({ characterImageUrl: url });
+      },
+
+      // Acción para agregar/eliminar favoritos
+      toggleFavorite: (character) => {
+        const store = getStore();
+        const favorites = store.favorites;
+        const exists = favorites.some((fav) => fav.uid === character.uid);
+
+        if (exists) {
+          setStore({
+            ...store,
+            favorites: favorites.filter((fav) => fav.uid !== character.uid),
+          });
+        } else {
+          setStore({
+            ...store,
+            favorites: [...favorites, character],
+          });
+        }
       },
     },
   };
