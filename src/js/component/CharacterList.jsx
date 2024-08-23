@@ -20,10 +20,8 @@ const CharacterList = () => {
 
   const handleClose = () => setShowModal(false);
 
-  const selectedCharacter = store.selectedCharacter || {};
-
   return (
-    <Container>
+    <Container className="bg-secondary">
       <h1 className="text-danger">Characters</h1>
       <Row
         className={`overflow-auto flex-nowrap ${showModal ? "opacity-50" : ""}`}
@@ -33,19 +31,21 @@ const CharacterList = () => {
             key={character.uid}
             character={character}
             onViewMore={handleViewMore}
+            url={`https://starwars-visualguide.com/assets/img/characters/${character.uid}.jpg`}
           />
         ))}
       </Row>
 
       <Modal show={showModal} onHide={handleClose} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Character Details</Modal.Title>
+          <Modal.Title className="text-danger">Character Details</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {selectedCharacter && (
+          {store.selectedCharacter && (
             <div className="d-flex flex-column">
               <CharacterCardImage
-                alt={selectedCharacter.name}
+                url={store.selectedCharacter.uid}
+                alt={store.selectedCharacter.name}
                 style={{ height: "380px" }}
               />
               <CharacterDetails />

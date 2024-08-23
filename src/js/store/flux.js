@@ -18,7 +18,14 @@ const getState = ({ getStore, getActions, setStore }) => {
         fetch(`https://www.swapi.tech/api/people/${uid}`)
           .then((res) => res.json())
           .then((data) => {
-            setStore({ selectedCharacter: data.result.properties });
+            setStore({
+              ...getStore(),
+              selectedCharacter: {
+                ...data.result.properties,
+                description: data.result.description,
+                uid: data.result.uid,
+              },
+            });
           })
           .catch((err) => console.error(err));
       },

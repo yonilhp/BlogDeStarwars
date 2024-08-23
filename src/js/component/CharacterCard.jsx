@@ -5,7 +5,7 @@ import CharacterCardImage from "./CharacterCardImage.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
-const CharacterCard = ({ character, onViewMore, onToggleFavorite }) => {
+const CharacterCard = ({ character, onViewMore, onToggleFavorite, url }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   const handleToggleFavorite = () => {
@@ -19,6 +19,7 @@ const CharacterCard = ({ character, onViewMore, onToggleFavorite }) => {
       style={{ width: "250px", height: "350px", position: "relative" }}
     >
       <CharacterCardImage
+        url={url}
         alt={character.name || "Character Image"} // Texto alternativo para la imagen
         style={{ height: "240px", objectFit: "cover" }} // Estilo de la imagen
       />
@@ -40,6 +41,7 @@ const CharacterCard = ({ character, onViewMore, onToggleFavorite }) => {
               color: isFavorite ? "red" : "gray",
               cursor: "pointer",
               marginLeft: "10px",
+              fontSize: "1.5rem",
             }}
           />
         </div>
