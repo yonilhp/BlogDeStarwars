@@ -12,6 +12,7 @@ const CharacterCardImage = ({ style, url }) => {
         src={url}
         className="img-fluid w-100 h-100"
         style={{ objectFit: "cover" }}
+        alt="Character"
       />
     </div>
   );

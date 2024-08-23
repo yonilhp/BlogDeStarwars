@@ -13,8 +13,9 @@ const CharacterList = () => {
     actions.loadCharacters();
   }, []);
 
-  const handleViewMore = (uid) => {
+  const handleViewMore = (uid, url) => {
     actions.loadCharacterDetails(uid);
+    actions.setCharacterImageUrl(url); // Guarda la URL de la imagen en el estado global
     setShowModal(true);
   };
 
@@ -44,7 +45,7 @@ const CharacterList = () => {
           {store.selectedCharacter && (
             <div className="d-flex flex-column">
               <CharacterCardImage
-                url={store.selectedCharacter.uid}
+                url={store.characterImageUrl} // Usa la URL de la imagen almacenada
                 alt={store.selectedCharacter.name}
                 style={{ height: "380px" }}
               />

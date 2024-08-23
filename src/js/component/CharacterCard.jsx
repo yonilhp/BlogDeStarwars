@@ -20,8 +20,8 @@ const CharacterCard = ({ character, onViewMore, onToggleFavorite, url }) => {
     >
       <CharacterCardImage
         url={url}
-        alt={character.name || "Character Image"} // Texto alternativo para la imagen
-        style={{ height: "240px", objectFit: "cover" }} // Estilo de la imagen
+        alt={character.name || "Character Image"}
+        style={{ height: "240px", objectFit: "cover" }}
       />
       <Card.Body
         className="d-flex flex-column"
@@ -31,9 +31,13 @@ const CharacterCard = ({ character, onViewMore, onToggleFavorite, url }) => {
           {character.name || "No Name Available"}
         </Card.Title>
         <div className="d-flex justify-content-between align-items-center mt-auto">
-          <Button variant="primary" onClick={() => onViewMore(character.uid)}>
+          <Button
+            variant="primary"
+            onClick={() => onViewMore(character.uid, url)} // Pasa también la URL de la imagen
+          >
             Ver más
           </Button>
+
           <FontAwesomeIcon
             icon={faHeart}
             onClick={handleToggleFavorite}

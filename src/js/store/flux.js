@@ -3,6 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       characters: [],
       selectedCharacter: null,
+      characterImageUrl: "", // Añadir la propiedad characterImageUrl al estado
     },
     actions: {
       loadCharacters: () => {
@@ -28,6 +29,10 @@ const getState = ({ getStore, getActions, setStore }) => {
             });
           })
           .catch((err) => console.error(err));
+      },
+
+      setCharacterImageUrl: (url) => {
+        setStore({ characterImageUrl: url }); // Nueva acción para actualizar la URL de la imagen
       },
     },
   };
