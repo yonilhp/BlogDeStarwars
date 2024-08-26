@@ -1,8 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-// import starWarsImag from "../../img/sc1.png"; // Importa la imagen
 
-const CharacterCardImage = ({ style, url }) => {
+const PlanetCardImage = ({ style, url }) => {
   return (
     <div
       className="w-100 d-flex justify-content-center overflow-hidden"
@@ -12,18 +11,18 @@ const CharacterCardImage = ({ style, url }) => {
         src={url}
         className="img-fluid w-100 h-100"
         style={{ objectFit: "cover" }}
-        alt="Character"
+        alt="Planet"
       />
     </div>
   );
 };
 
-CharacterCardImage.propTypes = {
+PlanetCardImage.propTypes = {
   style: PropTypes.object,
 };
 
-CharacterCardImage.defaultProps = {
+PlanetCardImage.defaultProps = {
   style: { height: "380px", objectFit: "cover" },
 };
 
-export default CharacterCardImage;
+export default PlanetCardImage;

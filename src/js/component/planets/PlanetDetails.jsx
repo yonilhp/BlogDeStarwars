@@ -2,30 +2,29 @@ import React, { useContext } from "react";
 import { Context } from "../../store/appContext";
 import { Card } from "react-bootstrap";
 
-const CharacterDetails = () => {
+const PlanetDetails = () => {
   const { store } = useContext(Context);
 
-  if (!store.selectedCharacter) return null;
+  if (!store.selectedPlanet) return null;
 
-  const { name, height, hair_color, eye_color, gender } =
-    store.selectedCharacter;
+  const { name, diameter, climate, terrain, population } = store.selectedPlanet;
 
   return (
     <Card className="mt-4">
       <Card.Body>
         <Card.Title>{name}</Card.Title>
         <Card.Text>
-          <strong>Height:</strong> {height} cm
+          <strong>Diameter:</strong> {diameter} km
           <br />
-          <strong>Hair Color:</strong> {hair_color}
+          <strong>Climate:</strong> {climate}
           <br />
-          <strong>Eye Color:</strong> {eye_color}
+          <strong>Terrain:</strong> {terrain}
           <br />
-          <strong>Gender:</strong> {gender}
+          <strong>Population:</strong> {population}
         </Card.Text>
       </Card.Body>
     </Card>
   );
 };
 
-export default CharacterDetails;
+export default PlanetDetails;

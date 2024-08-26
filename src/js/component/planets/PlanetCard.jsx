@@ -1,21 +1,20 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Card, Button } from "react-bootstrap";
-import CharacterCardImage from "./CharacterCardImage.jsx";
+import PlanetCardImage from "./PlanetCardImage.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { Context } from "../../store/appContext.js";
 
-const CharacterCard = ({ character, onViewMore, url }) => {
+const PlanetCard = ({ planet, onViewMore, url }) => {
   const { store, actions } = useContext(Context);
   const [isFavorite, setIsFavorite] = useState(false);
 
-  // Efecto para sincronizar el estado local `isFavorite` con el estado global `store.favorites`
   useEffect(() => {
-    setIsFavorite(store.favorites.some((fav) => fav.uid === character.uid));
-  }, [store.favorites, character.uid]);
+    setIsFavorite(store.favorites.some((fav) => fav.uid === planet.uid));
+  }, [store.favorites, planet.uid]);
 
   const handleToggleFavorite = () => {
-    actions.toggleFavorite(character);
+    actions.toggleFavorite(planet);
   };
 
   return (
@@ -23,9 +22,9 @@ const CharacterCard = ({ character, onViewMore, url }) => {
       className="mx-2"
       style={{ width: "250px", height: "350px", position: "relative" }}
     >
-      <CharacterCardImage
+      <PlanetCardImage
         url={url}
-        alt={character.name || "Character Image"}
+        alt={planet.name || "Planet Image"}
         style={{ height: "240px", objectFit: "cover" }}
       />
       <Card.Body
@@ -33,13 +32,10 @@ const CharacterCard = ({ character, onViewMore, url }) => {
         style={{ position: "absolute", bottom: 0, left: 0, right: 0 }}
       >
         <Card.Title className="text-center">
-          {character.name || "No Name Available"}
+          {planet.name || "No Name Available"}
         </Card.Title>
         <div className="d-flex justify-content-between align-items-center mt-auto">
-          <Button
-            variant="primary"
-            onClick={() => onViewMore(character.uid, url)}
-          >
+          <Button variant="primary" onClick={() => onViewMore(planet.uid, url)}>
             Ver más
           </Button>
           <FontAwesomeIcon
@@ -58,4 +54,4 @@ const CharacterCard = ({ character, onViewMore, url }) => {
   );
 };
 
-export default CharacterCard;
+export default PlanetCard;
