@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Context } from "../store/appContext";
+import { Context } from "../../store/appContext.js";
 import { Row, Container, Modal } from "react-bootstrap";
 import CharacterCard from "./CharacterCard.jsx";
 import CharacterCardImage from "./CharacterCardImage.jsx";

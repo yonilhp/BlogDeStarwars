@@ -3,7 +3,7 @@ import { Card, Button } from "react-bootstrap";
 import CharacterCardImage from "./CharacterCardImage.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { Context } from "../store/appContext"; // Importamos el contexto
+import { Context } from "../../store/appContext.js"; // Importamos el contexto
 
 const CharacterCard = ({ character, onViewMore, url }) => {
   const { store, actions } = useContext(Context); // Usamos el contexto para obtener acciones y store
