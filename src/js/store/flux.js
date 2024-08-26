@@ -4,7 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       characters: [],
       selectedCharacter: null,
       characterImageUrl: "",
-      favorites: [], // Nueva propiedad para los favoritos
+      favorites: JSON.parse(localStorage.getItem("favorites")) || [], // Cargar favoritos desde localStorage
     },
     actions: {
       loadCharacters: () => {
@@ -42,17 +42,22 @@ const getState = ({ getStore, getActions, setStore }) => {
         const favorites = store.favorites;
         const exists = favorites.some((fav) => fav.uid === character.uid);
 
+        let updatedFavorites;
         if (exists) {
-          setStore({
-            ...store,
-            favorites: favorites.filter((fav) => fav.uid !== character.uid),
-          });
+          updatedFavorites = favorites.filter(
+            (fav) => fav.uid !== character.uid
+          );
         } else {
-          setStore({
-            ...store,
-            favorites: [...favorites, character],
-          });
+          updatedFavorites = [...favorites, character];
         }
+
+        setStore({
+          ...store,
+          favorites: updatedFavorites,
+        });
+
+        // Guardar los favoritos actualizados en localStorage
+        localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
       },
     },
   };

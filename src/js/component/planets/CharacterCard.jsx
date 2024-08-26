@@ -1,18 +1,20 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Card, Button } from "react-bootstrap";
 import CharacterCardImage from "./CharacterCardImage.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { Context } from "../../store/appContext.js"; // Importamos el contexto
+import { Context } from "../../store/appContext.js";
 
 const CharacterCard = ({ character, onViewMore, url }) => {
-  const { store, actions } = useContext(Context); // Usamos el contexto para obtener acciones y store
-  const [isFavorite, setIsFavorite] = useState(
-    store.favorites.some((fav) => fav.uid === character.uid)
-  );
+  const { store, actions } = useContext(Context);
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  // Efecto para sincronizar el estado local `isFavorite` con el estado global `store.favorites`
+  useEffect(() => {
+    setIsFavorite(store.favorites.some((fav) => fav.uid === character.uid));
+  }, [store.favorites, character.uid]);
 
   const handleToggleFavorite = () => {
-    setIsFavorite(!isFavorite);
     actions.toggleFavorite(character);
   };
 
@@ -36,7 +38,7 @@ const CharacterCard = ({ character, onViewMore, url }) => {
         <div className="d-flex justify-content-between align-items-center mt-auto">
           <Button
             variant="primary"
-            onClick={() => onViewMore(character.uid, url)} // Pasamos la URL de la imagen
+            onClick={() => onViewMore(character.uid, url)}
           >
             Ver más
           </Button>
