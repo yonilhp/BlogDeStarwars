@@ -4,10 +4,13 @@ import PlanetCardImage from "./PlanetCardImage.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { Context } from "../../store/appContext.js";
+import { useNavigate } from "react-router-dom"; // Importamos useNavigate
 
 const PlanetCard = ({ planet, onViewMore, url }) => {
   const { store, actions } = useContext(Context);
   const [isFavorite, setIsFavorite] = useState(false);
+
+  const navigate = useNavigate(); // Inicializamos useNavigate
 
   useEffect(() => {
     setIsFavorite(store.favorites.some((fav) => fav.uid === planet.uid));
@@ -16,11 +19,15 @@ const PlanetCard = ({ planet, onViewMore, url }) => {
   const handleToggleFavorite = () => {
     actions.toggleFavorite(planet);
   };
+  const handleViewMore = () => {
+    navigate(`/planet/${planet.uid}`); // Redirige a la ruta dinámica
+  };
+
 
   return (
     <Card
       className="mx-2"
-      style={{ width: "250px", height: "350px", position: "relative" }}
+      style={{ width: "250px", height: "350px", position: "relative", background: "linear-gradient(to right, #1f4037, #99f2c8)", }}
     >
       <PlanetCardImage
         url={url}
@@ -35,7 +42,11 @@ const PlanetCard = ({ planet, onViewMore, url }) => {
           {planet.name || "No Name Available"}
         </Card.Title>
         <div className="d-flex justify-content-between align-items-center mt-auto">
-          <Button variant="primary" onClick={() => onViewMore(planet.uid, url)}>
+          <Button 
+            variant="primary" 
+            onClick={handleViewMore}
+            style={{background: "linear-gradient(to right, #5c2e91, #1b88e0)"}}
+          >
             Ver más
           </Button>
           <FontAwesomeIcon

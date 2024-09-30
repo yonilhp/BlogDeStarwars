@@ -4,7 +4,7 @@ import PlanetList from "../component/planets/PlanetList.jsx";
 
 export const Home = () => {
   return (
-    <div>
+    <div style={{background: "linear-gradient(to right, #1f4037, #99f2c8)", marginTop:"-5px"}}>
       <CharacterList />
       <PlanetList />
     </div>

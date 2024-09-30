@@ -10,7 +10,7 @@ export const Navbar = () => {
   const { store, actions } = useContext(Context); // Usamos el contexto
 
   return (
-    <nav className="navbar navbar-light bg-light mb-3">
+    <nav className="navbar navbar-light bg-light mb-3" style={{background: "linear-gradient(to bottom, #2c3e50, #4ca1af)"}}>
       <Link to="/">
         <img
           src={StarWarsImagen}
@@ -21,7 +21,7 @@ export const Navbar = () => {
       </Link>
       <div className="ml-auto">
         <Dropdown align="end">
-          <Dropdown.Toggle variant="primary" id="dropdown-basic">
+          <Dropdown.Toggle variant="primary" id="dropdown-basic" style={{background: "linear-gradient(to right, #5c2e91, #1b88e0)"}}>
             Favorites ({store.favorites.length})
           </Dropdown.Toggle>
 

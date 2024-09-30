@@ -22,7 +22,7 @@ const CharacterList = () => {
   const handleClose = () => setShowModal(false);
 
   return (
-    <Container className="bg-secondary">
+    <Container className="bg-secondary" style={{}}>
       <h1 className="text-danger">Characters</h1>
       <Row
         className={`overflow-auto flex-nowrap ${showModal ? "opacity-50" : ""}`}
